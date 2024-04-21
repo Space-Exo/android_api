@@ -1,2 +1,6 @@
 api
-AsjT6c8V2AG9iF
+YQVPWGjmk6gd
+ssh-keygen -f "/home/arthur/.ssh/known_hosts" -R "54.37.38.230"
+
+
+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

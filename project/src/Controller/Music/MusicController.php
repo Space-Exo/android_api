@@ -95,7 +95,7 @@ class MusicController extends AbstractController
                 $entityManager->persist($music);
                 $entityManager->flush();
 
-                return new JsonResponse(["success" => true]);
+                return new Response("true");
             } catch (\Exception $e) {
                 return new JsonResponse(["error" => $e->getMessage()], 500);
             }
