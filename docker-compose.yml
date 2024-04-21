@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    container_name: db_api_symfony
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      TZ: 'Europe/Paris' 
+    networks:
+      - api
+
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_api_symfony
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8085:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 30M
+    networks:
+      - api
+
+  www:
+    build: docker
+    container_name: api_symfony
+    restart: always
+    ports:
+     - "8742:443"
+    volumes:
+      - ./docker/vhosts:/etc/apache2/sites-enabled
+      - ./:/var/www
+    networks:
+      - api
+
+
+
+networks:
+  api:
+
+volumes:
+  db-data:
