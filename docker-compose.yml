@@ -33,7 +33,7 @@ services:
     container_name: api_symfony
     restart: always
     ports:
-     - "8742:443"
+     - "443:443"
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
       - ./:/var/www
